@@ -6,6 +6,9 @@ var mongoose = require ("mongoose");
 // Disable etag headers on responses
 app.disable('etag');
 
+// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public')); 
+
 //MONGOOSE CONNECTION START
 var uristring =
 process.env.MONGOLAB_URI ||
@@ -25,12 +28,13 @@ mongoose.connect(uristring, function (err, res) {
 });
 //MONGOOSE CONNECTION END
 
-// Index Route
-app.get('/', routes.index);
-
 //EXPRESS ROUTES START
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
+
+//ROUTES
+require('./app/routes')(app); // configure our routes
+
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
