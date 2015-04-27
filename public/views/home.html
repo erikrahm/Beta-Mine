@@ -1,3 +1,11 @@
 <!-- public/views/home.html -->
 
-    <p>{{ tagline }}</p>
+<div ng-controller="MainController">
+  <form novalidate class="simple-form">
+    Name: <input type="text" ng-model="partner.name" /><br />
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="scrape(partner)" value="Save" />
+  </form>
+  <pre>Partner = {{partner | json}}</pre>
+  <pre>Saved = {{master | json}}</pre>
+</div>

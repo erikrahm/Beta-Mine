@@ -1,9 +1,12 @@
-// app/models/data.js
-// grab the mongoose module
-var mongoose = require('mongoose');
+// app/models/bear.js
 
-// define our nerd model
-// module.exports allows us to pass this to other files when it is called
-module.exports = mongoose.model('Data', {
-    name : {type : String, default: ''}
+var mongoose     = require('mongoose');
+var Schema       = mongoose.Schema;
+
+var PartnerSchema   = new Schema({
+    name: String,
+    phone: String,
+    url: String
 });
+
+module.exports = mongoose.model('Partner', PartnerSchema);
